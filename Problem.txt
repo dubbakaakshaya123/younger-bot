@@ -1,0 +1,44 @@
+Here is a Dart solution for the problem:
+
+
+void sortArray(List<int> arr) {
+  List<int> oddNumbers = [];
+  List<int> evenNumbers = [];
+
+  for (int num in arr) {
+    if (num % 2 == 0) {
+      evenNumbers.add(num);
+    } else {
+      oddNumbers.add(num);
+    }
+  }
+
+  oddNumbers.sort();
+  evenNumbers.sort((a, b) => b.compareTo(a));
+
+  List<int> result = [];
+  int oddIndex = 0;
+  int evenIndex = 0;
+
+  for (int num in arr) {
+    if (num % 2 == 0) {
+      result.add(evenNumbers[evenIndex]);
+      evenIndex++;
+    } else {
+      result.add(oddNumbers[oddIndex]);
+      oddIndex++;
+    }
+  }
+
+  print(result);
+}
+
+void main() {
+  List<int> arr1 = [5, 8, 11, 6, 2, 1, 7];
+  sortArray(arr1);
+
+  List<int> arr2 = [9, 4, 3, 10, 15, 2];
+  sortArray(arr2);
+}
+
+

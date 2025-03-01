@@ -1,0 +1,27 @@
+longestSubarray(List<int> arr, int k) {
+  int n = arr.length;
+  int sum = 0;
+  int maxLength = 0;
+  int start = 0;
+
+  for (int end = 0; end < n; end++) {
+    sum += arr[end];
+
+    while (sum > k) {
+      sum -= arr[start];
+      start++;
+    }
+
+    maxLength = (maxLength > end - start + 1) ? maxLength : end - start + 1;
+  }
+
+  return maxLength;
+}
+
+void main() {
+  List<int> arr = [3, 1, 2, 1, 4, 5];
+  int k = 7;
+  print(longestSubarray(arr, k)); 
+}
+
+

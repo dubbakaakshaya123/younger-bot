@@ -1,0 +1,24 @@
+void main() {
+  print(repeatCharacters("a1b10")); 
+  print(repeatCharacters("b3c6d15")); 
+}
+
+String repeatCharacters(String input) {
+  String result = "";
+  int i = 0;
+  while (i < input.length) {
+    String char = input[i];
+    int count = 0;
+    i++;
+    while (i < input.length && int.tryParse(input[i]) != null) {
+      count = count * 10 + int.parse(input[i]);
+      i++;
+    }
+    result += char * count;
+  }
+  return result;
+}
+
+
+
+

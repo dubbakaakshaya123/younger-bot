@@ -1,0 +1,32 @@
+void main() {
+  print(permuteUnique([1, 1, 2]));
+  print(permuteUnique([1, 2, 3]));
+}
+
+List<List<int>> permuteUnique(List<int> nums) {
+  nums.sort(); 
+  List<List<int>> result = [];
+  backtrack(result, [], nums, []);
+  return result;
+}
+
+void backtrack(List<List<int>> result, List<int> tempList, List<int> nums, List<bool> used) {
+  if (tempList.length == nums.length) {
+    result.add(List.from(tempList));
+  } else {
+    for (int i = 0; i < nums.length; i++) {
+      if (used.length == 0) {
+        used = List.generate(nums.length, (_) => false);
+      }
+      if (used[i] || (i > 0 && nums[i] == nums[i - 1] && !used[i - 1])) {
+        continue;
+      }
+      used[i] = true;
+      tempList.add(nums[i]);
+      backtrack(result, tempList, nums, used);
+      used[i] = false;
+      tempList.removeLast();
+    }
+  }
+}
+
